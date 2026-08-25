@@ -50,6 +50,7 @@
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-surefire-plugin</artifactId>
 					<configuration>
+						<argLine>@{argLine} -XX:+EnableDynamicAgentLoading -Duser.language=ru -Duser.country=RU</argLine>
 						<systemPropertyVariables>
 							<spring.profiles.active>test</spring.profiles.active>
 						</systemPropertyVariables>
