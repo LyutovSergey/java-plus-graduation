@@ -117,7 +117,7 @@
 							"            header: { \"Content-Type\": \"application/json\" }\r",
 							"        }, (error, response) => {\r",
 							"            pm.sendRequest({\r",
-							"                url : \"http://localhost:9090/stats?start=2020-05-05 00:00:00&end=2035-05-05 00:00:00&uris=/events/\" + event.id.toString() + \"&unique=false\",\r",
+							"                url : \"http://localhost:8080/stats?start=2020-05-05 00:00:00&end=2035-05-05 00:00:00&uris=/events/\" + event.id.toString() + \"&unique=false\",\r",
 							"                method : \"GET\",\r",
 							"                header: { \"Content-Type\": \"application/json\" }\r",
 							"            }, (error, response) => {\r",
@@ -384,7 +384,7 @@
 							"        }, (error, response) => {\r",
 							"            \r",
 							"            pm.sendRequest({\r",
-							"                url : \"http://localhost:9090/stats?start=2020-05-05 00:00:00&end=2035-05-05 00:00:00&uris=/events&unique=false\",\r",
+							"                url : \"http://localhost:8080/stats?start=2020-05-05 00:00:00&end=2035-05-05 00:00:00&uris=/events&unique=false\",\r",
 							"                method : \"GET\",\r",
 							"                header: { \"Content-Type\": \"application/json\" }\r",
 							"            }, (error, response) => {\r",
@@ -515,7 +515,7 @@
 							"            }, (error, response) => {\r",
 							"                \r",
 							"                pm.sendRequest({\r",
-							"                    url : \"http://localhost:9090/stats?start=2020-05-05 00:00:00&end=2035-05-05 00:00:00&uris=/events&unique=true\",\r",
+							"                    url : \"http://localhost:8080/stats?start=2020-05-05 00:00:00&end=2035-05-05 00:00:00&uris=/events&unique=true\",\r",
 							"                    method : \"GET\",\r",
 							"                    header: { \"Content-Type\": \"application/json\" }\r",
 							"                }, (error, response) => {\r",
@@ -836,7 +836,7 @@
 				"type": "text/javascript",
 				"exec": [
 					"API = class {",
-					"    constructor(postman, verbose = false, baseUrl = \"http://localhost:9090\") {",
+					"    constructor(postman, verbose = false, baseUrl = \"http://localhost:8080\") {",
 					"        this.baseUrl = baseUrl;",
 					"        this.pm = postman;",
 					"        this._verbose = verbose;",
@@ -1012,7 +1012,7 @@
 	"variable": [
 		{
 			"key": "baseUrl",
-			"value": "http://localhost:9090",
+			"value": "http://localhost:8080",
 			"type": "string"
 		},
 		{

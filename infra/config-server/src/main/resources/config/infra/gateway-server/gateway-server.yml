@@ -1,0 +1,96 @@
+server:
+  port: 8080
+
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+
+      routes:
+        # Публичные эндпоинты
+        - id: main-service-public
+          uri: lb://main-service
+          predicates:
+            - Path=/categories/**,/categories,/events,/events/{id},/compilations/**,/compilations
+          filters:
+            - name: Retry
+              args:
+                retries: 2
+                statuses:
+                  - BAD_GATEWAY
+                  - SERVICE_UNAVAILABLE
+                  - GATEWAY_TIMEOUT
+                methods:
+                  - GET
+                backoff:
+                  firstBackoff: 100ms
+                  maxBackoff: 500ms
+
+        #  Admin эндпоинты
+        - id: main-service-admin
+          uri: lb://main-service
+          predicates:
+            - Path=/admin/**
+
+        # Private эндпоинты
+        - id: main-service-private
+          uri: lb://main-service
+          predicates:
+            - Path=/users/**
+
+        # Stats-server
+        - id: stats-service-hit
+          uri: lb://stats-server
+          predicates:
+            - Path=/hit
+            - Method=POST
+
+        # Stats-server
+        - id: stats-service-get
+          uri: lb://stats-server
+          predicates:
+            - Path=/stats
+            - Method=GET
+
+      globalcors:
+        add-to-simple-url-handler-mapping: true
+        cors-configurations:
+          '[/**]':
+            allowed-origins:
+              - "http://localhost:3000"
+              - "http://localhost:5173"
+              - "http://localhost:8443"
+            allowed-methods:
+              - GET
+              - POST
+              - PUT
+              - PATCH
+              - DELETE
+              - OPTIONS
+            allowed-headers:
+              - '*'
+            exposed-headers:
+              - Location
+            allow-credentials: true
+            max-age: 3600
+
+# Регистрация в Eureka
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${random.value}
+
+# Логирование для отладки
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+    org.springframework.cloud.config: DEBUG
+    com.netflix.discovery: DEBUG

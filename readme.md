@@ -1,5 +1,7 @@
 # Explore with me
 
+## Студент Лютов Сергей Фёдорович, 69 кагорта
+
 ![Static Badge](https://img.shields.io/badge/Java-21-green)
 ![Static Badge](https://img.shields.io/badge/Spring_Boot-3.5.9-green)
 ![Static Badge](https://img.shields.io/badge/Lombok-red)
