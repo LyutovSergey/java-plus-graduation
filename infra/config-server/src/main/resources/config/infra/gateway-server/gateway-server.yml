@@ -55,6 +55,12 @@ spring:
             - Path=/stats
             - Method=GET
 
+        # Stats-server
+        - id: user-service
+          uri: lb://user-service
+          predicates:
+            - Path=/admin/users/**
+
       globalcors:
         add-to-simple-url-handler-mapping: true
         cors-configurations:
