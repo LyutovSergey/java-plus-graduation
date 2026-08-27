@@ -55,11 +55,17 @@ spring:
             - Path=/stats
             - Method=GET
 
-        # Stats-server
+        # user-service
         - id: user-service
           uri: lb://user-service
           predicates:
             - Path=/admin/users/**
+
+        #  user-service
+        - id: rating-service
+          uri: lb://rating-service
+          predicates:
+            - Path=/users/**/events/**/likes
 
       globalcors:
         add-to-simple-url-handler-mapping: true
