@@ -1,4 +1,4 @@
-package ru.practicum.rating.model;
+package ru.practicum.common.model;
 
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

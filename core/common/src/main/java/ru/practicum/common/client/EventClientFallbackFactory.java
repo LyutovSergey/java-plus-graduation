@@ -1,10 +1,10 @@
-package ru.practicum.rating.client;
+package ru.practicum.common.client;
 
 import feign.FeignException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.openfeign.FallbackFactory;
 import org.springframework.stereotype.Component;
-import ru.practicum.rating.dto.EventDto;
+import ru.practicum.common.dto.EventDto;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,7 +26,7 @@ public class EventClientFallbackFactory implements FallbackFactory<EventClient> 
 
 				log.warn("event-service недоступен, возвращаем заглушки для ID: {}", ids);
 				return ids.stream()
-						.map(id -> new EventDto(id, null, false))
+						.map(id -> new EventDto(id, null, false, 0, false))
 						.collect(Collectors.toList());
 			}
 

@@ -5,17 +5,20 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.practicum.rating.client.EventClient;
-import ru.practicum.rating.client.UserClient;
-import ru.practicum.rating.dto.EventDto;
-import ru.practicum.rating.dto.UserDto;
+
 import ru.practicum.rating.repository.RatingRepository;
 import ru.practicum.rating.dto.RatingRequest;
 import ru.practicum.rating.dto.RatingResponse;
 import ru.practicum.rating.model.Rating;
 import ru.practicum.rating.model.Reaction;
-import ru.practicum.rating.exception.ConflictException;
-import ru.practicum.rating.exception.NotFoundException;
+import ru.practicum.common.client.EventClient;
+import ru.practicum.common.client.UserClient;
+import ru.practicum.common.dto.EventDto;
+import ru.practicum.common.dto.UserDto;
+import ru.practicum.common.exception.ConflictException;
+import ru.practicum.common.exception.NotFoundException;
+
+
 
 import java.util.*;
 

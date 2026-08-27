@@ -1,4 +1,4 @@
-package ru.practicum.rating.exception;
+package ru.practicum.common.exception;
 
 public class ConflictException extends RuntimeException {
 

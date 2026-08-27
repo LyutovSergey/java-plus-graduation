@@ -1,11 +1,11 @@
-package ru.practicum.rating.client;
+package ru.practicum.common.client;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
-import ru.practicum.rating.dto.EventDto;
+import ru.practicum.common.dto.EventDto;
 
 import java.util.List;
 

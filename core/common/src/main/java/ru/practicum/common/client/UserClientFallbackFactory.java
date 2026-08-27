@@ -1,10 +1,10 @@
-package ru.practicum.rating.client;
+package ru.practicum.common.client;
 
 import feign.FeignException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.openfeign.FallbackFactory;
 import org.springframework.stereotype.Component;
-import ru.practicum.rating.dto.UserDto;
+import ru.practicum.common.dto.UserDto;
 
 import java.util.List;
 import java.util.stream.Collectors;

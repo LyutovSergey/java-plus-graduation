@@ -61,11 +61,17 @@ spring:
           predicates:
             - Path=/admin/users/**
 
-        #  user-service
+        # user-service
         - id: rating-service
           uri: lb://rating-service
           predicates:
             - Path=/users/**/events/**/likes
+            -
+        # request-service
+        - id: request-service
+          uri: lb://request-service
+          predicates:
+            - Path=/users/**/events/**/requests
 
       globalcors:
         add-to-simple-url-handler-mapping: true

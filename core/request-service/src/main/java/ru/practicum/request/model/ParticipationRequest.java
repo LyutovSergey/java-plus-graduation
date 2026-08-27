@@ -1,4 +1,4 @@
-package ru.practicum.rating.model;
+package ru.practicum.request.model;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -9,26 +9,27 @@ import lombok.experimental.FieldDefaults;
 import lombok.experimental.SuperBuilder;
 import ru.practicum.common.model.BaseEntity;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @Entity
-@Table(name = "ratings", uniqueConstraints = {
-		@UniqueConstraint(columnNames = {"user_id", "event_id"})
-})
+@Table(name = "requests")
 @SuperBuilder
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Rating extends BaseEntity {
+public class ParticipationRequest extends BaseEntity {
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_id", nullable = false)
-	private Long userId;
+	@Column(name = "created")
+	private LocalDateTime created;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "event_id", nullable = false)
+	@Column(name = "event_id", nullable = false)
 	private Long eventId;
+
+	@Column(name = "requester_id", nullable = false)
+	private Long requesterId;
 
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
-	private Reaction reaction;
+	private ParticipationStatus status;
 }

@@ -1,4 +1,4 @@
-package ru.practicum.rating.dto;
+package ru.practicum.common.dto;
 
 public record UserDto(
 		Long id,
