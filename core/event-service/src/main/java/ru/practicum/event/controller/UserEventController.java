@@ -19,7 +19,6 @@ import java.util.List;
 public class UserEventController {
 
 	private final EventService eventService;
-	private final RequestClient requestClient;
 
 	/**
 	 * Получение событий, добавленных текущим пользователем
@@ -90,45 +89,5 @@ public class UserEventController {
 	                               @RequestBody @Valid UpdateEventUserRequest request) {
 		return eventService.patchEvent(userId, eventId, request);
 	}
-
-	/**
-	 * Получение информации о запросах на участие в событии текущего пользователя
-	 * <p>
-	 * В случае, если по заданным фильтрам не найдено ни одной заявки, возвращает пустой список
-	 *
-	 * @param userId  id текущего пользователя
-	 * @param eventId id события
-	 * @return List<{@link ParticipationRequestDto}>
-	 */
-	@GetMapping("/{eventId}/requests")
-	public List<ParticipationRequestDto> getRequests(@PathVariable @Positive Long userId,
-													 @PathVariable @Positive Long eventId) {
-		return requestClient.getRequestsByEventId(eventId);
-	}
-
-	/**
-	 * Изменение статуса (подтверждена, отменена) заявок на участие в событии текущего пользователя
-	 * <p>
-	 * Обратите внимание:
-	 * <p>
-	 * - если для события лимит заявок равен 0 или отключена пре-модерация заявок, то подтверждение заявок не требуется
-	 * <p>
-	 * - нельзя подтвердить заявку, если уже достигнут лимит по заявкам на данное событие (Ожидается код ошибки 409)
-	 * <p>
-	 * - статус можно изменить только у заявок, находящихся в состоянии ожидания (Ожидается код ошибки 409)
-	 * <p>
-	 * - если при подтверждении данной заявки, лимит заявок для события исчерпан, то все неподтверждённые заявки
-	 * необходимо отклонить
-	 *
-	 * @param userId  id текущего пользователя
-	 * @param eventId id события текущего пользователя
-	 * @param status  Новый статус для заявок на участие в событии текущего пользователя
-	 * @return {@link EventRequestStatusUpdateResult}
-	 */
-	@PatchMapping("/{eventId}/requests")
-	public EventRequestStatusUpdateResult patchRequests(@PathVariable @Positive Long userId,
-	                                                    @PathVariable @Positive Long eventId,
-	                                                    @RequestBody @Valid EventRequestStatusUpdateRequest status) {
-		return requestClient.updateStatusRequest(eventId, status);
-	}
 }
+
