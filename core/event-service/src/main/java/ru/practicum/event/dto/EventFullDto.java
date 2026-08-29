@@ -1,12 +1,10 @@
-package ru.practicum.event.event;
+package ru.practicum.event.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
-import ru.practicum.ewm.dto.category.CategoryDto;
-import ru.practicum.ewm.dto.user.UserShortDto;
-import ru.practicum.ewm.model.Location;
-import ru.practicum.ewm.model.enums.EventState;
+import ru.practicum.event.model.EventState;
+import ru.practicum.event.model.Location;
 
 import java.time.LocalDateTime;
 
@@ -31,7 +29,7 @@ public record EventFullDto(
 		LocalDateTime eventDate,
 
 		@NotNull
-		UserShortDto initiator,
+		Long initiatorId,
 
 		@NotNull
 		Location location,

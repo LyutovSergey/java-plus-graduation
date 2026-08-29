@@ -2,10 +2,10 @@ package ru.practicum.event.mapper;
 
 import lombok.experimental.UtilityClass;
 import org.springframework.lang.NonNull;
-import ru.practicum.ewm.dto.compilation.CompilationDto;
-import ru.practicum.ewm.dto.compilation.NewCompilationDto;
-import ru.practicum.ewm.model.Compilation;
-import ru.practicum.ewm.model.Event;
+import ru.practicum.event.dto.compilation.CompilationDto;
+import ru.practicum.event.dto.compilation.NewCompilationDto;
+import ru.practicum.event.model.Compilation;
+import ru.practicum.event.model.Event;
 
 import java.util.HashSet;
 import java.util.Map;
@@ -15,8 +15,8 @@ import java.util.Set;
 public class CompilationMapper {
 
 	public CompilationDto toCompilationDto(@NonNull Compilation compilation,
-	                                       @NonNull Map<Long, Long> confirmedRequests,
-	                                       @NonNull Map<Long, Long> views) {
+										   @NonNull Map<Long, Long> confirmedRequests,
+										   @NonNull Map<Long, Long> views) {
 		return CompilationDto.builder()
 				.id(compilation.getId())
 				.pinned(compilation.isPinned())

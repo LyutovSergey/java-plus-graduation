@@ -1,4 +1,4 @@
-package ru.practicum.event.event;
+package ru.practicum.event.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -7,7 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.experimental.Accessors;
 import lombok.experimental.FieldDefaults;
-import ru.practicum.ewm.model.Location;
+import ru.practicum.event.model.Location;
 
 import java.time.LocalDateTime;
 

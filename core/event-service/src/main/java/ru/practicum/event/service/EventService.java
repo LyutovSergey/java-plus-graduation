@@ -2,6 +2,8 @@ package ru.practicum.event.service;
 
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.transaction.annotation.Transactional;
+import ru.practicum.common.dto.EventDto;
+import ru.practicum.event.dto.*;
 
 import java.util.List;
 
@@ -35,4 +37,8 @@ public interface EventService {
 
 	/// Изменение события добавленного текущим пользователем
 	EventFullDto patchEvent(Long userId, Long eventId, UpdateEventUserRequest request);
+
+	void updateEventRate(Long eventId, Long rate);
+
+	List<EventDto> getEventsByIds(List<Long> ids);
 }

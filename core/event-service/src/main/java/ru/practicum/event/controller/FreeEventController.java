@@ -4,10 +4,11 @@ import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
-import ru.practicum.ewm.dto.event.EventFullDto;
-import ru.practicum.ewm.dto.event.EventShortDto;
-import ru.practicum.ewm.dto.event.FreeGetDto;
-import ru.practicum.ewm.service.event.EventService;
+import ru.practicum.event.dto.EventFullDto;
+import ru.practicum.event.dto.EventShortDto;
+import ru.practicum.event.dto.FreeGetDto;
+import ru.practicum.event.service.EventService;
+
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -83,7 +84,7 @@ public class FreeEventController {
 	 */
 	@GetMapping(value = "/{eventId}")
 	public EventFullDto getFreeEventById(@PathVariable Long eventId,
-	                                     HttpServletRequest request) {
+										 HttpServletRequest request) {
 		return eventService.getFreeEventById(eventId, request);
 	}
 }

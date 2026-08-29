@@ -3,10 +3,10 @@ package ru.practicum.event.util.specification;
 import jakarta.persistence.criteria.Join;
 import lombok.experimental.UtilityClass;
 import org.springframework.data.jpa.domain.Specification;
-import ru.practicum.ewm.model.Category;
-import ru.practicum.ewm.model.Event;
-import ru.practicum.ewm.model.User;
-import ru.practicum.ewm.model.enums.EventState;
+import ru.practicum.event.model.Category;
+import ru.practicum.event.model.Event;
+import ru.practicum.event.model.EventState;
+
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -111,9 +111,7 @@ public class EventSpecifications {
 			if (userIds == null || userIds.isEmpty()) {
 				return null;
 			}
-
-			Join<Event, User> userJoin = root.join("initiator");
-			return userJoin.get("id").in(userIds);
+			return  root.get("initiatorId").in(userIds);
 		};
 	}
 

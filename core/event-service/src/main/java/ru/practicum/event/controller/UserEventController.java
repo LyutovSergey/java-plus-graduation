@@ -6,15 +6,10 @@ import jakarta.validation.constraints.PositiveOrZero;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import ru.practicum.ewm.dto.event.EventFullDto;
-import ru.practicum.ewm.dto.event.EventShortDto;
-import ru.practicum.ewm.dto.event.NewEventDto;
-import ru.practicum.ewm.dto.event.UpdateEventUserRequest;
-import ru.practicum.ewm.dto.request.EventRequestStatusUpdateRequest;
-import ru.practicum.ewm.dto.request.EventRequestStatusUpdateResult;
-import ru.practicum.ewm.dto.request.ParticipationRequestDto;
-import ru.practicum.ewm.service.event.EventService;
-import ru.practicum.ewm.service.request.RequestService;
+import ru.practicum.common.client.RequestClient;
+import ru.practicum.event.dto.*;
+import ru.practicum.event.service.EventService;
+
 
 import java.util.List;
 
@@ -24,7 +19,7 @@ import java.util.List;
 public class UserEventController {
 
 	private final EventService eventService;
-	private final RequestService requestService;
+	private final RequestClient requestClient;
 
 	/**
 	 * Получение событий, добавленных текущим пользователем
@@ -38,8 +33,8 @@ public class UserEventController {
 	 */
 	@GetMapping
 	public List<EventShortDto> findEventsByUserId(@PathVariable @Positive Long userId,
-	                                              @RequestParam(defaultValue = "0") @PositiveOrZero Integer from,
-	                                              @RequestParam(defaultValue = "10") @Positive Integer size) {
+												  @RequestParam(defaultValue = "0") @PositiveOrZero Integer from,
+												  @RequestParam(defaultValue = "10") @Positive Integer size) {
 		return eventService.findByUserId(userId, from, size);
 	}
 
@@ -52,7 +47,7 @@ public class UserEventController {
 	 */
 	@GetMapping("/{eventId}")
 	public EventFullDto findEventById(@PathVariable @Positive Long userId,
-	                                  @PathVariable @Positive Long eventId) {
+									  @PathVariable @Positive Long eventId) {
 		return eventService.findEventById(userId, eventId);
 	}
 
@@ -107,8 +102,8 @@ public class UserEventController {
 	 */
 	@GetMapping("/{eventId}/requests")
 	public List<ParticipationRequestDto> getRequests(@PathVariable @Positive Long userId,
-	                                                 @PathVariable @Positive Long eventId) {
-		return requestService.findByEventId(userId, eventId);
+													 @PathVariable @Positive Long eventId) {
+		return requestClient.getRequestsByEventId(eventId);
 	}
 
 	/**
@@ -134,6 +129,6 @@ public class UserEventController {
 	public EventRequestStatusUpdateResult patchRequests(@PathVariable @Positive Long userId,
 	                                                    @PathVariable @Positive Long eventId,
 	                                                    @RequestBody @Valid EventRequestStatusUpdateRequest status) {
-		return requestService.updateStatusRequest(userId, eventId, status);
+		return requestClient.updateStatusRequest(eventId, status);
 	}
 }

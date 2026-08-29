@@ -1,26 +1,21 @@
-package ru.practicum.event.event;
+package ru.practicum.event.dto;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
+import ru.practicum.event.model.EventState;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @NotNull
 @Builder
-public record FreeGetDto(
-		String text,
+public record AdminGetDto(
+		List<Integer> users,
+		List<EventState> states,
 		List<Integer> categories,
-		Boolean paid,
 		LocalDateTime rangeStart,
 		LocalDateTime rangeEnd,
-		Boolean onlyAvailable,
-		FreeEventSort sort,
 		Integer from,
 		Integer size
 ) {
-
-	public enum FreeEventSort {
-		EVENT_DATE, VIEWS
-	}
 }

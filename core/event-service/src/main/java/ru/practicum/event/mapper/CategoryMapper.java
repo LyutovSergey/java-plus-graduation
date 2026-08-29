@@ -2,9 +2,10 @@ package ru.practicum.event.mapper;
 
 import lombok.experimental.UtilityClass;
 import org.springframework.lang.NonNull;
-import ru.practicum.ewm.dto.category.CategoryDto;
-import ru.practicum.ewm.dto.category.NewCategoryDto;
-import ru.practicum.ewm.model.Category;
+import ru.practicum.event.dto.CategoryDto;
+import ru.practicum.event.dto.NewCategoryDto;
+import ru.practicum.event.model.Category;
+
 
 @UtilityClass
 public class CategoryMapper {

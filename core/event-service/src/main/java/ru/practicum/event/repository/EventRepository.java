@@ -3,9 +3,8 @@ package ru.practicum.event.repository;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
-import ru.practicum.ewm.model.Event;
-import ru.practicum.ewm.model.enums.EventState;
-
+import ru.practicum.event.model.Event;
+import ru.practicum.event.model.EventState;
 import java.util.Collection;
 import java.util.Optional;
 

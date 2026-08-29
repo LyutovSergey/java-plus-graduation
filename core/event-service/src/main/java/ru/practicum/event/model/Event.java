@@ -11,9 +11,7 @@ import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.annotations.Type;
 import org.hibernate.type.SqlTypes;
-import ru.practicum.ewm.model.Location;
-import ru.practicum.ewm.model.enums.EventState;
-import ru.practicum.ewm.util.entity.BaseEntity;
+import ru.practicum.common.model.BaseEntity;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -49,9 +47,8 @@ public class Event extends BaseEntity {
 	LocalDateTime eventDate;
 
 	/// Пользователь инициатор события
-	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "initiator_id")
-	User initiator;
+	Long initiatorId;
 
 	/// Широта и долгота места проведения события
 	@Type(JsonBinaryType.class)
