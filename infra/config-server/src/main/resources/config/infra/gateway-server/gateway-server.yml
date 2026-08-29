@@ -8,38 +8,50 @@ spring:
         locator:
           enabled: true
           lower-case-service-id: true
-
+      default-filters:
+        - name: Retry
+          args:
+            retries: 2
+            statuses:
+              - BAD_GATEWAY
+              - SERVICE_UNAVAILABLE
+              - GATEWAY_TIMEOUT
+            methods:
+              - GET
+            backoff:
+              firstBackoff: 100ms
+              maxBackoff: 500ms
       routes:
-        # Публичные эндпоинты
-        - id: main-service-public
-          uri: lb://main-service
-          predicates:
-            - Path=/categories/**,/categories,/events,/events/{id},/compilations/**,/compilations
-          filters:
-            - name: Retry
-              args:
-                retries: 2
-                statuses:
-                  - BAD_GATEWAY
-                  - SERVICE_UNAVAILABLE
-                  - GATEWAY_TIMEOUT
-                methods:
-                  - GET
-                backoff:
-                  firstBackoff: 100ms
-                  maxBackoff: 500ms
-
-        #  Admin эндпоинты
-        - id: main-service-admin
-          uri: lb://main-service
-          predicates:
-            - Path=/admin/**
-
-        # Private эндпоинты
-        - id: main-service-private
-          uri: lb://main-service
-          predicates:
-            - Path=/users/**
+#        # Публичные эндпоинты
+#        - id: main-service-public
+#          uri: lb://main-service
+#          predicates:
+#            - Path=/categories/**,/categories,/events,/events/{id},/compilations/**,/compilations
+#          filters:
+#            - name: Retry
+#              args:
+#                retries: 2
+#                statuses:
+#                  - BAD_GATEWAY
+#                  - SERVICE_UNAVAILABLE
+#                  - GATEWAY_TIMEOUT
+#                methods:
+#                  - GET
+#                backoff:
+#                  firstBackoff: 100ms
+#                  maxBackoff: 500ms
+#
+#        #  Admin эндпоинты
+#        - id: main-service-admin
+#          uri: lb://main-service
+#          predicates:
+#           - Path=/admin/**
+#
+#        # Private эндпоинты
+#        - id: main-service-private
+#          uri: lb://main-service
+#          predicates:
+#            - Path=/users/**
 
         # Stats-server
         - id: stats-service-hit
