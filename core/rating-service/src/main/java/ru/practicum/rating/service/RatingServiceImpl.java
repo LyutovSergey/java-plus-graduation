@@ -69,7 +69,7 @@ public class RatingServiceImpl implements RatingService {
 		} else {
 			rating = Rating.builder()
 					.userId(userId)
-					.userId(eventId)
+					.eventId(eventId)
 					.reaction(request.getReaction())
 					.build();
 			ratingRepository.save(rating);
