@@ -20,12 +20,10 @@ import ru.practicum.common.model.BaseEntity;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Rating extends BaseEntity {
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_id", nullable = false)
+	@Column(name = "user_id", nullable = false)
 	private Long userId;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "event_id", nullable = false)
+	@Column(name = "event_id", nullable = false)
 	private Long eventId;
 
 	@Enumerated(EnumType.STRING)

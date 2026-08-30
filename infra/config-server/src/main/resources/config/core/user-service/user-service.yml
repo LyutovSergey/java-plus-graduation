@@ -17,6 +17,7 @@ spring:
   jackson:
     serialization:
       INDENT_OUTPUT: true
+    date-format: yyyy-MM-dd HH:mm:ss
 
   sql:
     init:

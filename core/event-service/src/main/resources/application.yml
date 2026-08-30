@@ -1,6 +1,8 @@
 spring:
   application:
     name: event-service
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
   config:
     import: "configserver:"
   cloud:

@@ -1,7 +1,10 @@
+app.name: event-service
 server:
   port: 0
 
 spring:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
   datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:6546/ewm-events
