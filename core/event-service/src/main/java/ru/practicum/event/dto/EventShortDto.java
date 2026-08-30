@@ -12,7 +12,7 @@ public record EventShortDto(
 		CategoryDto category,
 		long confirmedRequests,
 		LocalDateTime eventDate,
-		Long initiatorId,
+		Long initiator,
 		boolean paid,
 		String title,
 		long views,

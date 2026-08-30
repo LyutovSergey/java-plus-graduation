@@ -63,7 +63,7 @@ public class GlobalExceptionHandler {
 				LocalDateTime.now()
 		);
 	}
-
+///*
 	@ExceptionHandler
 	@ResponseStatus(BAD_REQUEST)
 	public ApiError handleHandlerMethodValidationException(@NonNull HandlerMethodValidationException ex) {
@@ -76,7 +76,7 @@ public class GlobalExceptionHandler {
 				LocalDateTime.now()
 		);
 	}
-
+//*/
 	@ExceptionHandler
 	@ResponseStatus(BAD_REQUEST)
 	public ApiError handleIllegalArgumentException(@NonNull IllegalArgumentException ex) {

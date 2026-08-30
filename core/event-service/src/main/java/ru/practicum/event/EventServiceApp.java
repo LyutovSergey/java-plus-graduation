@@ -14,7 +14,8 @@ import org.springframework.context.annotation.ComponentScan;
 })
 @ComponentScan(basePackages = {
 		"ru.practicum.event",
-		"ru.practicum.stat.client"
+		"ru.practicum.stat.client",
+		"ru.practicum.common"
 })
 public class EventServiceApp {
 
