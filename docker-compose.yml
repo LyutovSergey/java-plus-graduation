@@ -30,3 +30,63 @@ services:
       timeout: 5s
       interval: 5s
       retries: 10
+
+  users-db:
+    image: postgres:16.1
+    container_name: postgres-ewm-users
+    ports:
+      - "6543:5432"
+    environment:
+      - POSTGRES_DB=ewm-users
+      - POSTGRES_USER=dbuser
+      - POSTGRES_PASSWORD=12345
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -q -d $$POSTGRES_DB -U $$POSTGRES_USER"]
+      timeout: 5s
+      interval: 5s
+      retries: 10
+
+  ratings-db:
+    image: postgres:16.1
+    container_name: postgres-ewm-ratings
+    ports:
+      - "6544:5432"
+    environment:
+      - POSTGRES_DB=ewm-ratings
+      - POSTGRES_USER=dbuser
+      - POSTGRES_PASSWORD=12345
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -q -d $$POSTGRES_DB -U $$POSTGRES_USER"]
+      timeout: 5s
+      interval: 5s
+      retries: 10
+
+  requests-db:
+    image: postgres:16.1
+    container_name: postgres-ewm-requests
+    ports:
+      - "6545:5432"
+    environment:
+      - POSTGRES_DB=ewm-requests
+      - POSTGRES_USER=dbuser
+      - POSTGRES_PASSWORD=12345
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -q -d $$POSTGRES_DB -U $$POSTGRES_USER"]
+      timeout: 5s
+      interval: 5s
+      retries: 10
+
+  events-db:
+    image: postgres:16.1
+    container_name: postgres-ewm-events
+    ports:
+      - "6546:5432"
+    environment:
+      - POSTGRES_DB=ewm-events
+      - POSTGRES_USER=dbuser
+      - POSTGRES_PASSWORD=12345
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -q -d $$POSTGRES_DB -U $$POSTGRES_USER"]
+      timeout: 5s
+      interval: 5s
+      retries: 10
