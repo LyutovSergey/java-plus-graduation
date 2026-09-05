@@ -12,10 +12,46 @@
 
     <artifactId>stats</artifactId>
     <packaging>pom</packaging>
+    <properties>
+        <avro.version>1.11.3</avro.version>
+        <grpc-starter.version>3.1.0.RELEASE</grpc-starter.version>
+        <protobuf.version>3.25.3</protobuf.version>
+        <grpc.version>1.62.2</grpc.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.apache.avro</groupId>
+                <artifactId>avro</artifactId>
+                <version>${avro.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>net.devh</groupId>
+                <artifactId>grpc-server-spring-boot-starter</artifactId>
+                <version>${grpc-starter.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.grpc</groupId>
+                <artifactId>grpc-stub</artifactId>
+                <version>${grpc.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.grpc</groupId>
+                <artifactId>grpc-protobuf</artifactId>
+                <version>${grpc.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <modules>
         <module>stat-dto</module>
         <module>stat-client</module>
+        <module>collector</module>
+        <module>serialization</module>
     </modules>
 
 </project>
